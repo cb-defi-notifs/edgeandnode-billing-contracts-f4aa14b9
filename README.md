@@ -60,6 +60,7 @@ await billing.add('1000000000000000000')
 
 To deploy, see these instructions:
 
+### Billing
 Use arbitrum-one (or arbitrum-goerli) to deploy Billing:
 
 ```
@@ -67,7 +68,7 @@ hh deploy-billing --network arbitrum-one \
     --collector <COLLECTOR_ADDRESS> \
     --token <GRT_ADDRESS> \
     --governor <GOVERNOR_ADDRESS> \
-    --tokenGateway <L2GRAPHTOKENGATEWAY_ADDRESS>
+    --tokengateway <L2GRAPHTOKENGATEWAY_ADDRESS>
 ```
 
 Then run this to verify on Etherscan:
@@ -81,15 +82,16 @@ hh verify --network arbitrum-one \
     <L2GRAPHTOKENGATEWAY_ADDRESS>
 ```
 
-
+### BillingConnector
 Use mainnet (or goerli) to deploy BillingConnector:
 
 ```
 hh deploy-billing-connector --network mainnet \
-    --tokenGateway <L1GRAPHTOKENGATEWAY_ADDRESS> \
+    --tokengateway <L1GRAPHTOKENGATEWAY_ADDRESS> \
     --billing <L2_BILLING_ADDRESS> \
     --token <GRT_ADDRESS> \
-    --governor <GOVERNOR_ADDRESS>
+    --governor <GOVERNOR_ADDRESS> \
+    --inbox <ARBITRUM_INBOX_ADDRESS>
 ```
 
 Then run this to verify on Etherscan:
@@ -101,5 +103,25 @@ hh verify --network mainnet \
     <L2_BILLING_ADDRESS> \
     <GRT_ADDRESS> \
     <GOVERNOR_ADDRESS> \
-    <L2GRAPHTOKENGATEWAY_ADDRESS>
+    <ARBITRUM_INBOX_ADDRESS>
+```
+
+### BanxaWrapper
+Use arbitrum-one (or arbitrum-goerli) to deploy BanxaConnector:
+
+```
+hh deploy-banxa --network arbitrum-one \
+    --token <GRT_ADDRESS> \
+    --billing <BILLING_ADDRESS> \
+    --governor <GOVERNOR_ADDRESS>
+```
+
+Then run this to verify on Etherscan:
+
+```
+hh verify --network arbitrum-one \
+    <NEW_DEPLOYED_ADDRESS> \
+    <GRT_ADDRESS> \
+    <BILLING_ADDRESS> \
+    <GOVERNOR_ADDRESS>
 ```
